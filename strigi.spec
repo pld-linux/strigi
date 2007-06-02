@@ -7,7 +7,7 @@ Summary:	Strigi desktop search
 #Summary(pl.UTF-8):	Strigi
 Name:		strigi
 Version:	0.5.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
@@ -57,8 +57,11 @@ Pliki nagłówkowe dla strigi.
 install -d build
 cd build
 %cmake \
-		-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-		../
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+%if "%{_lib}" == "lib64"
+	-DLIB_SUFFIX=64 \
+%endif
+	../
 
 %{__make}
 
@@ -77,14 +80,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_prefix}/lib/*.so*
-%dir %{_prefix}/lib/strigi
-%attr(755,root,root) %{_prefix}/lib/strigi/*.so
+%attr(755,root,root) %{_libdir}/*.so*
+%dir %{_libdir}/strigi
+%attr(755,root,root) %{_libdir}/strigi/*.so
 
 %files devel
 %defattr(644,root,root,755)
 %dir %{_includedir}/strigi
 %{_includedir}/strigi/*.h
-/usr/lib/pkgconfig/*.pc
+%{_pkgconfigdir}/*.pc
 %dir %{_datadir}/strigi
 %{_datadir}/strigi/fieldproperties
