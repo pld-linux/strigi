@@ -1,10 +1,9 @@
 #
 # TODO:
-# - pl
 # - what about strigi daemon?
 #
 Summary:	Strigi desktop search
-#Summary(pl.UTF-8):	Strigi
+Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.5.1
 Release:	2
@@ -20,23 +19,35 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Strigi Desktop Search
+Here are the main features of Strigi Desktop Search: very fast
+crawling, very small memory footprint, no hammering of the system,
+pluggable backend (currently clucene and hyperestraier, sqlite3 and
+xapian are in the works), communication between daemon and search
+program over an abstract interface with two implementations: DBus and
+a simple unix socket. Especially the DBus interface makes it very easy
+to write client applications. There are a few sample scripts in the
+code using Perl, Python, GTK+ and Qt. Writing clients is so easy that
+any GNOME or KDE app could implement this. Additionally, there is a
+simple interface for implementing plugins for extracting information.
+We'll try to reuse the kat plugins, although native plugins will have
+a large speed advantage. Strigi also has calculation of sha1 for every
+file crawled which allows for fast finding of duplicate files.
 
-Here are the main features of Strigi: very fast crawling very small
-memory footprint no hammering of the system pluggable backend,
-currently clucene and hyperestraier, sqlite3 and xapian are in the
-works communication between daemon and search program over an abstract
-interface with two implementations: DBus and a simple unix socket.
-Especially the DBus interface makes it very easy to write client
-applications. There are a few sample scripts in the code using Perl,
-Python, GTK and Qt. Writing clients is so easy that any Gnome or KDE
-app could implement this. Aditionally, there is a simple interface for
-implementing plugins for extracting information. We'll try to reuse
-the kat plugins, although native plugins will have a large speed
-advantage. Strigi also has calculation of sha1 for every file crawled
-which allows for fast finding of duplicate files.
-
-#%description -l pl.UTF-8
+%description -l pl.UTF-8
+Główne cechy systemu wyszukiwania Strigi to: bardzo szybkie
+przeglądanie, bardzo mały narzut pamięciowy, nieprzytykanie systemu,
+backend z obsługą wtyczek (aktualnie clucene i hyperestraier, sqlite3
+i xapian w trakcie rozwoju), komunikacja między demonem a programem
+wyszukującym po abstrakcyjnym interfejsie z dwiema implementacjami:
+DBus i prostym gdzieździe uniksowym. Zwłaszcza interfejs DBus znacznie
+ułatwia pisanie aplikacji klienckich. Istnieje kilka przykładowych
+skryptów napisanych z użyciem Perla, Pythona, GTK+ i Qt. Tworzenie
+klientów jest tak proste, że każda aplikacja GNOME czy KDE może to
+zaimplementować. Ponadto istnieje prosty interfejs do implementowania
+wtyczek do wydobywania informacji. Autorzy będą próbowali
+wykorzystywać wtyczki kata, ale natywne wtyczki będą miały większą
+szybkość. Strigi ma także obliczanie sha1 dla każdego przeglądanego
+pliku, co pozwala na szybkie znajdowanie duplikatów.
 
 %package devel
 Summary:	Header files for strigi
@@ -67,8 +78,8 @@ cd build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd build
-%{__make} install \
+
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
