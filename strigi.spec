@@ -69,10 +69,11 @@ install -d build
 cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DCMAKE_VERBOSE_MAKEFILE=1 \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
-	../
+	..
 
 %{__make}
 
@@ -91,14 +92,21 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*.so*
+%attr(755,root,root) %{_libdir}/libstreamanalyzer.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libstreamanalyzer.so.0
+%attr(755,root,root) %{_libdir}/libstreams.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libstreams.so.0
 %dir %{_libdir}/strigi
-%attr(755,root,root) %{_libdir}/strigi/*.so
+%attr(755,root,root) %{_libdir}/strigi/strigila_*.so
+%attr(755,root,root) %{_libdir}/strigi/strigita_*.so
+%dir %{_datadir}/strigi
+%{_datadir}/strigi/fieldproperties
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libstreamanalyzer.so
+%attr(755,root,root) %{_libdir}/libstreams.so
 %dir %{_includedir}/strigi
 %{_includedir}/strigi/*.h
-%{_pkgconfigdir}/*.pc
-%dir %{_datadir}/strigi
-%{_datadir}/strigi/fieldproperties
+%{_pkgconfigdir}/libstreamanalyzer.pc
+%{_pkgconfigdir}/libstreams.pc
