@@ -5,12 +5,12 @@
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
-Version:	0.5.5
-Release:	2
+Version:	0.5.4
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
-# Source0-md5:	bf61ec453f5e0063ea70ace783df3a14
+Source0:	http://ftp.sayclub.com/pub/X/KDE/unstable/3.92/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	c724d4e741f042b4be4b76fdb9071c85
 URL:		http://www.vandenoever.info/software/strigi/
 BuildRequires:	autoconf
 BuildRequires:	automake
