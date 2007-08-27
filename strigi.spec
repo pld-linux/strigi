@@ -6,14 +6,17 @@ Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.5.5
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
 # Source0-md5:	bf61ec453f5e0063ea70ace783df3a14
 URL:		http://www.vandenoever.info/software/strigi/
+BuildRequires:	QtDBus-devel >= 4.3.0
+BuildRequires:	QtGui-devel >= 4.3.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	clucene-core
 BuildRequires:	cmake
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -92,10 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/libstreamanalyzer.so.*.*.*
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libstreamanalyzer.so.0
-%attr(755,root,root) %{_libdir}/libstreams.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libstreams.so.0
+%{_datadir}/dbus-1/services/*.service
 %dir %{_datadir}/strigi
 %{_datadir}/strigi/fieldproperties
 
@@ -103,7 +106,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libstreamanalyzer.so
 %attr(755,root,root) %{_libdir}/libstreams.so
+%{_libdir}/strigi/*.cmake
 %dir %{_includedir}/strigi
 %{_includedir}/strigi/*.h
+%dir %{_includedir}/strigi/qtdbus
+%{_includedir}/strigi/qtdbus/*.h
 %{_pkgconfigdir}/libstreamanalyzer.pc
 %{_pkgconfigdir}/libstreams.pc
