@@ -16,7 +16,7 @@ BuildRequires:	QtDBus-devel >= 4.3.0
 BuildRequires:	QtGui-devel >= 4.3.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	clucene-core
+BuildRequires:	clucene-core-devel
 BuildRequires:	cmake
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
