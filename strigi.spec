@@ -100,8 +100,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libstreams.so.*.*.*
 %attr(755,root,root) %{_libdir}/libstrigihtmlgui.so.*.*.*
 %attr(755,root,root) %{_libdir}/libstrigiqtdbusclient.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsearchclient.so.0
 %attr(755,root,root) %ghost %{_libdir}/libstreamanalyzer.so.0
 %attr(755,root,root) %ghost %{_libdir}/libstreams.so.0
+%attr(755,root,root) %ghost %{_libdir}/libstrigihtmlgui.so.0
+%attr(755,root,root) %ghost %{_libdir}/libstrigiqtdbusclient.so.0
+%dir %{_libdir}/strigi
+%attr(755,root,root) %{_libdir}/strigi/*.so
 %{_datadir}/dbus-1/services/*.service
 %dir %{_datadir}/strigi
 %{_datadir}/strigi/fieldproperties
@@ -113,8 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libstreams.so
 %attr(755,root,root) %{_libdir}/libstrigihtmlgui.so
 %attr(755,root,root) %{_libdir}/libstrigiqtdbusclient.so
-%dir %{_libdir}/strigi
-%attr(755,root,root) %{_libdir}/strigi/*.so
 %{_libdir}/strigi/*.cmake
 %dir %{_includedir}/strigi
 %{_includedir}/strigi/*.h
