@@ -1,6 +1,12 @@
 #
+# Conditional build:
+%bcond_without	dbus		# dbus support
+#
+#
 # TODO:
 # - what about strigi daemon?
+# - Could not find CLucene. Please install CLucene = 0.9.16a (http://clucene.sf.net)
+# - Cannot find Exiv2 library!
 #
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
@@ -16,9 +22,16 @@ BuildRequires:	QtDBus-devel >= 4.3.0
 BuildRequires:	QtGui-devel >= 4.3.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	bzip2-devel
 BuildRequires:	clucene-core-devel
 BuildRequires:	cmake
+%{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
+BuildRequires:	expat-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	qt4-build >= 4.3.3-3
+BuildRequires:	qt4-qmake >= 4.3.3-3
 BuildRequires:	rpmbuild(macros) >= 1.293
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -107,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libstrigiqtdbusclient.so.0
 %dir %{_libdir}/strigi
 %attr(755,root,root) %{_libdir}/strigi/*.so
-%{_datadir}/dbus-1/services/*.service
+%{?with_dbus:%{_datadir}/dbus-1/services/*.service}
 %dir %{_datadir}/strigi
 %{_datadir}/strigi/fieldproperties
 
