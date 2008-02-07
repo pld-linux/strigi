@@ -41,7 +41,7 @@ crawling, very small memory footprint, no hammering of the system,
 pluggable backend (currently clucene and hyperestraier, sqlite3 and
 xapian are in the works), communication between daemon and search
 program over an abstract interface with two implementations: DBus and
-a simple unix socket. Especially the DBus interface makes it very easy
+a simple Unix socket. Especially the DBus interface makes it very easy
 to write client applications. There are a few sample scripts in the
 code using Perl, Python, GTK+ and Qt. Writing clients is so easy that
 any GNOME or KDE app could implement this. Additionally, there is a
