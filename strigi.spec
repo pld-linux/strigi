@@ -17,7 +17,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
 # Source0-md5:	2e8034ab85b91bd7fbc1b0aa296135a9
-URL:		http://www.vandenoever.info/software/strigi/
+URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= 4.3.0
 BuildRequires:	QtGui-devel >= 4.3.0
 BuildRequires:	autoconf
