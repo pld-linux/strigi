@@ -20,8 +20,6 @@ Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= 4.3.0
 BuildRequires:	QtGui-devel >= 4.3.0
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	clucene-core-devel
 BuildRequires:	cmake
