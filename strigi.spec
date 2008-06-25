@@ -82,13 +82,14 @@ Pliki nagłówkowe dla strigi.
 %build
 install -d build
 cd build
+# add this to get verbose output
+#-DCMAKE_VERBOSE_MAKEFILE=1 \
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-	-DCMAKE_VERBOSE_MAKEFILE=1 \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
-	..
+	../
 
 %{__make}
 
