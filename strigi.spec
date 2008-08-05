@@ -11,12 +11,12 @@
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
-Version:	0.5.10
+Version:	0.5.11
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
-# Source0-md5:	cfaa2114ea27f2a00e6773c374e98ec4
+# Source0-md5:	f1fa3488a9c2fe1e8128f4d44088c4ad
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= 4.3.0
 BuildRequires:	QtGui-devel >= 4.3.0
