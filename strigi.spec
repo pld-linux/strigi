@@ -9,7 +9,7 @@
 # - Cannot find Exiv2 library!
 #
 %define		qtver	4.4.0
-%define		_svnver	844382
+%define		_svnver	850421
 
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
@@ -20,7 +20,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}-r%{_svnver}.tar.gz
-# Source0-md5:	390a2f8516273ed91efa9e562e2f8081
+# Source0-md5:	7e60551d051cf3298605c9c6aa80bca4
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
