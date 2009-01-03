@@ -9,18 +9,17 @@
 # - Cannot find Exiv2 library!
 #
 %define		qtver	4.4.0
-%define		_svnver	850421
+#%define		_svnver	850421
 
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
-Version:	0.5.12
-Release:	0.r%{_svnver}.1
+Version:	0.6.2
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
-#Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{version}-r%{_svnver}.tar.gz
-# Source0-md5:	7e60551d051cf3298605c9c6aa80bca4
+Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
+# Source0-md5:	0b17b84a4db7b3ad9da342a9c093a14d
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -81,7 +80,7 @@ Header files for strigi.
 Pliki nagłówkowe dla strigi.
 
 %prep
-%setup -q -n %{name}-%{version}-r%{_svnver}
+%setup -q
 
 %build
 install -d build
