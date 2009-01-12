@@ -8,24 +8,24 @@
 # - Could not find CLucene. Please install CLucene = 0.9.16a (http://clucene.sf.net)
 # - Cannot find Exiv2 library!
 #
-%define		qtver	4.4.0
+%define		qtver	4.4.3
 #%define		_svnver	850421
 
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
-Version:	0.6.2
-Release:	0.1
+Version:	0.6.3
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
-# Source0-md5:	0b17b84a4db7b3ad9da342a9c093a14d
+# Source0-md5:	56088c25dedacf55cfc11f7ba7c18ba7
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	bzip2-devel
 BuildRequires:	clucene-core-devel
-BuildRequires:	cmake >= 2.6.0
+BuildRequires:	cmake >= 2.6.2
 BuildRequires:	cppunit-devel
 %{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
 BuildRequires:	expat-devel
