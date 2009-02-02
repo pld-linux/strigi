@@ -8,28 +8,30 @@
 # - Could not find CLucene. Please install CLucene = 0.9.16a (http://clucene.sf.net)
 # - Cannot find Exiv2 library!
 #
+%define		qtver	4.4.3
+#%define		_svnver	850421
+
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
-Version:	0.5.11
+Version:	0.6.4
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
-# Source0-md5:	f1fa3488a9c2fe1e8128f4d44088c4ad
+# Source0-md5:	324fd9606ac77765501717ff92c04f9a
 URL:		http://strigi.sourceforge.net/
-BuildRequires:	QtDBus-devel >= 4.3.0
-BuildRequires:	QtGui-devel >= 4.3.0
-BuildRequires:	QtTest-devel >= 4.3.0
+BuildRequires:	QtDBus-devel >= %{qtver}
+BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	bzip2-devel
 BuildRequires:	clucene-core-devel
-BuildRequires:	cmake
+BuildRequires:	cmake >= 2.6.2
 BuildRequires:	cppunit-devel
 %{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
 BuildRequires:	expat-devel
 BuildRequires:	libxml2-devel
-BuildRequires:	qt4-build >= 4.3.3-3
-BuildRequires:	qt4-qmake >= 4.3.3-3
+BuildRequires:	qt4-build >= %{qtver}
+BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.293
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -83,9 +85,11 @@ Pliki nagłówkowe dla strigi.
 %build
 install -d build
 cd build
+# add this to get verbose output
+#-DCMAKE_VERBOSE_MAKEFILE=1 \
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_AR=/usr/bin/ar \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
