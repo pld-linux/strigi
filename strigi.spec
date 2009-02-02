@@ -2,12 +2,6 @@
 # Conditional build:
 %bcond_without	dbus		# dbus support
 #
-#
-# TODO:
-# - what about strigi daemon?
-# - Could not find CLucene. Please install CLucene = 0.9.16a (http://clucene.sf.net)
-# - Cannot find Exiv2 library!
-#
 %define		qtver	4.4.3
 #%define		_svnver	850421
 
