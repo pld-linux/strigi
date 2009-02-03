@@ -9,7 +9,7 @@ Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.6.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
@@ -22,8 +22,11 @@ BuildRequires:	clucene-core-devel
 BuildRequires:	cmake >= 2.6.2
 BuildRequires:	cppunit-devel
 %{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
+BuildRequires:	exiv2-devel
 BuildRequires:	expat-devel
+BuildRequires:	gamin-devel
 BuildRequires:	libxml2-devel
+BuildRequires:	log4cxx-devel
 BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.293
@@ -84,6 +87,9 @@ cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DCMAKE_AR=/usr/bin/ar \
+	-DENABLE_INOTIFY=1 \
+	-DENABLE_FAM=1 \
+	-DENABLE_LOG4CXX=1 \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
