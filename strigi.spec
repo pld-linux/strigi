@@ -25,6 +25,7 @@ BuildRequires:	cppunit-devel
 BuildRequires:	exiv2-devel
 BuildRequires:	expat-devel
 BuildRequires:	gamin-devel
+BuildRequires:	hyperestraier-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	log4cxx-devel
 BuildRequires:	qt4-build >= %{qtver}
