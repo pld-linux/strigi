@@ -24,9 +24,10 @@ BuildRequires:	cppunit-devel
 %{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
 BuildRequires:	exiv2-devel
 BuildRequires:	expat-devel
-BuildRequires:	gamin-devel
+BuildRequires:	fam-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	log4cxx-devel
+%{?with_dbus:BuildRequires:	pkgconfig}
 BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.293
