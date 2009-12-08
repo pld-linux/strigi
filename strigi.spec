@@ -2,14 +2,14 @@
 # Conditional build:
 %bcond_without	dbus		# dbus support
 #
-%define		qtver	4.6.0
+%define		qtver	4.5.2
 #%define		_svnver	850421
 
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.7.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
