@@ -9,7 +9,7 @@ Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.7.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
@@ -22,7 +22,7 @@ BuildRequires:	clucene-core-devel
 BuildRequires:	cmake >= 2.6.2
 BuildRequires:	cppunit-devel
 %{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
-BuildRequires:	exiv2-devel >= 0.18.2
+BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	expat-devel
 BuildRequires:	fam-devel
 BuildRequires:	libxml2-devel
