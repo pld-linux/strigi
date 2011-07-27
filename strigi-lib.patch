@@ -1,0 +1,16 @@
+--- strigi-0.7.5/strigiutils/bin/xmlindexer/CMakeLists.txt~	2011-04-23 13:00:17.000000000 +0200
++++ strigi-0.7.5/strigiutils/bin/xmlindexer/CMakeLists.txt	2011-07-27 10:22:05.164488881 +0200
+@@ -1,11 +1,11 @@
+-add_library(librdfindexer
++add_library(librdfindexer STATIC
+         rdfindexer.cpp
+         tagmapping.cpp
+ 	rdfindexwriter.cpp
+ )
+ target_link_libraries(librdfindexer ${LIBSTREAMANALYZER_LIBRARIES} ${LIBSTREAMS_LIBRARIES})
+ 
+-add_library(libxmlindexer
++add_library(libxmlindexer STATIC
+         xmlindexer.cpp
+         tagmapping.cpp
+ 	xmlindexwriter.cpp
