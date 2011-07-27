@@ -26,6 +26,7 @@ BuildRequires:	cppunit-devel
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	expat-devel
 BuildRequires:	fam-devel
+BuildRequires:	ffmpeg-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	log4cxx-devel
 %{?with_dbus:BuildRequires:	pkgconfig}
