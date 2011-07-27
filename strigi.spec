@@ -92,6 +92,7 @@ cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DCMAKE_AR=/usr/bin/ar \
+	-DFORCE_DEPS=1 \
 	-DENABLE_INOTIFY=1 \
 	-DENABLE_FAM=1 \
 	-DENABLE_LOG4CXX=1 \
