@@ -15,6 +15,7 @@ Group:		X11/Applications
 #Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
 Source0:	http://rdieter.fedorapeople.org/strigi/%{name}-%{version}.tar.bz2
 # Source0-md5:	d3ba1bf03978dfa793ab18c3f0c57d02
+Patch1:		%{name}-as-needed.patch
 Patch2:		%{name}-gcc47.patch
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
@@ -82,6 +83,7 @@ Pliki nagłówkowe dla strigi.
 
 %prep
 %setup -q
+%patch1 -p1
 %patch2 -p1
 
 %build
@@ -148,6 +150,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libstreamanalyzer/LibStreamAnalyzerConfig.cmake
 %dir %{_libdir}/libstreams
 %{_libdir}/libstreams/LibStreamsConfig.cmake
+%{_libdir}/libstreams/LibStreamsTargets-pld.cmake
+%{_libdir}/libstreams/LibStreamsTargets.cmake
 %dir %{_includedir}/strigi
 %{_includedir}/strigi/*.h
 %{_includedir}/strigi/qtdbus
