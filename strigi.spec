@@ -8,14 +8,14 @@
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
-Version:	0.7.5
-Release:	3
+Version:	0.7.7
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
-# Source0-md5:	0559e2ab65d187d30916e9ffe36e0fb6
-Patch0:		%{name}-ffmpeg.patch
-Patch1:		%{name}-lib.patch
+#Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
+Source0:	http://rdieter.fedorapeople.org/strigi/%{name}-%{version}.tar.bz2
+# Source0-md5:	d3ba1bf03978dfa793ab18c3f0c57d02
+Patch2:		%{name}-gcc47.patch
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -82,10 +82,7 @@ Pliki nagłówkowe dla strigi.
 
 %prep
 %setup -q
-cd libstreamanalyzer
-%patch0 -p1
-cd ..
-%patch1 -p1
+%patch2 -p1
 
 %build
 install -d build
