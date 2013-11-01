@@ -8,16 +8,13 @@
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
-Version:	0.7.7
-Release:	6
+Version:	0.7.8
+Release:	1
 License:	GPL
 Group:		X11/Applications
-#Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
-Source0:	http://rdieter.fedorapeople.org/strigi/%{name}-%{version}.tar.bz2
-# Source0-md5:	d3ba1bf03978dfa793ab18c3f0c57d02
+Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
+# Source0-md5:	d69443234f4286d71997db9de543331a
 Patch1:		%{name}-as-needed.patch
-Patch2:		%{name}-gcc47.patch
-Patch3:		strigi-0.7.7-ffmpeg-0.11.patch
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -85,8 +82,6 @@ Pliki nagłówkowe dla strigi.
 %prep
 %setup -q
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %build
 install -d build
@@ -94,7 +89,7 @@ cd build
 # add this to get verbose output
 #-DCMAKE_VERBOSE_MAKEFILE=1 \
 %cmake \
-	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DCMAKE_INSTALL_LIBDIR=%{_lib} \
 	-DCMAKE_AR=/usr/bin/ar \
 	-DFORCE_DEPS=1 \
 	-DENABLE_INOTIFY=1 \
@@ -145,15 +140,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libstreams.so
 %attr(755,root,root) %{_libdir}/libstrigihtmlgui.so
 %attr(755,root,root) %{_libdir}/libstrigiqtdbusclient.so
-%{_libdir}/strigi/*.cmake
-%dir %{_libdir}/libsearchclient
-%{_libdir}/libsearchclient/LibSearchClientConfig.cmake
-%dir %{_libdir}/libstreamanalyzer
-%{_libdir}/libstreamanalyzer/LibStreamAnalyzerConfig.cmake
-%dir %{_libdir}/libstreams
-%{_libdir}/libstreams/LibStreamsConfig.cmake
-%{_libdir}/libstreams/LibStreamsTargets-pld.cmake
-%{_libdir}/libstreams/LibStreamsTargets.cmake
+%{_libdir}/cmake/Strigi/*.cmake
+%dir %{_libdir}/cmake/LibSearchClient
+%{_libdir}/cmake/LibSearchClient/LibSearchClientConfig.cmake
+%dir %{_libdir}/cmake/LibStreamAnalyzer
+%{_libdir}/cmake/LibStreamAnalyzer/LibStreamAnalyzerConfig.cmake
+%{_libdir}/cmake/LibStreamAnalyzer/LibStreamAnalyzerConfigVersion.cmake
+%dir %{_libdir}/cmake/LibStreams
+%{_libdir}/cmake/LibStreams/LibStreamsConfig.cmake
+%{_libdir}/cmake/LibStreams/LibStreamsConfigVersion.cmake
+%{_libdir}/cmake/LibStreams/LibStreamsTargets-pld.cmake
+%{_libdir}/cmake/LibStreams/LibStreamsTargets.cmake
 %dir %{_includedir}/strigi
 %{_includedir}/strigi/*.h
 %{_includedir}/strigi/qtdbus
