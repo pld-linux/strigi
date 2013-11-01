@@ -140,6 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libstreams.so
 %attr(755,root,root) %{_libdir}/libstrigihtmlgui.so
 %attr(755,root,root) %{_libdir}/libstrigiqtdbusclient.so
+%dir %{_libdir}/cmake/Strigi
 %{_libdir}/cmake/Strigi/*.cmake
 %dir %{_libdir}/cmake/LibSearchClient
 %{_libdir}/cmake/LibSearchClient/LibSearchClientConfig.cmake
