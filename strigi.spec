@@ -3,14 +3,13 @@
 %bcond_without	dbus		# dbus support
 #
 %define		qtver	4.6.3
-#%define		_svnver	850421
 
 Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.7.8
-Release:	1
-License:	GPL
+Release:	2
+License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
 # Source0-md5:	d69443234f4286d71997db9de543331a
@@ -18,21 +17,22 @@ Patch1:		%{name}-as-needed.patch
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
+BuildRequires:	attr-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	clucene-core-devel
-BuildRequires:	cmake >= 2.6.2
+BuildRequires:	clucene-core-devel >= 0.9.21
+BuildRequires:	cmake >= 2.8.9
 BuildRequires:	cppunit-devel
 %{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	expat-devel
 BuildRequires:	fam-devel
 BuildRequires:	ffmpeg-devel
-BuildRequires:	libxml2-devel
+BuildRequires:	libxml2-devel >= 2
 BuildRequires:	log4cxx-devel
 %{?with_dbus:BuildRequires:	pkgconfig}
 BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
-BuildRequires:	rpmbuild(macros) >= 1.293
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -86,19 +86,13 @@ Pliki nagłówkowe dla strigi.
 %build
 install -d build
 cd build
-# add this to get verbose output
-#-DCMAKE_VERBOSE_MAKEFILE=1 \
-%cmake \
+# note: package expects relative CMAKE_INSTALL_LIBDIR
+%cmake .. \
 	-DCMAKE_INSTALL_LIBDIR=%{_lib} \
-	-DCMAKE_AR=/usr/bin/ar \
 	-DFORCE_DEPS=1 \
-	-DENABLE_INOTIFY=1 \
 	-DENABLE_FAM=1 \
-	-DENABLE_LOG4CXX=1 \
-%if "%{_lib}" == "lib64"
-	-DLIB_SUFFIX=64 \
-%endif
-	../
+	-DENABLE_INOTIFY=1 \
+	-DENABLE_LOG4CXX=1
 
 %{__make}
 
@@ -116,20 +110,29 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%doc AUTHORS ChangeLog
+%attr(755,root,root) %{_bindir}/deepfind
+%attr(755,root,root) %{_bindir}/deepgrep
+%attr(755,root,root) %{_bindir}/lucene2indexer
+%attr(755,root,root) %{_bindir}/rdfindexer
+%attr(755,root,root) %{_bindir}/strigiclient
+%attr(755,root,root) %{_bindir}/strigicmd
+%attr(755,root,root) %{_bindir}/strigidaemon
+%attr(755,root,root) %{_bindir}/xmlindexer
 %attr(755,root,root) %{_libdir}/libsearchclient.so.*.*.*
-%attr(755,root,root) %{_libdir}/libstreamanalyzer.so.*.*.*
-%attr(755,root,root) %{_libdir}/libstreams.so.*.*.*
-%attr(755,root,root) %{_libdir}/libstrigihtmlgui.so.*.*.*
-%attr(755,root,root) %{_libdir}/libstrigiqtdbusclient.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsearchclient.so.0
+%attr(755,root,root) %{_libdir}/libstreamanalyzer.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libstreamanalyzer.so.0
+%attr(755,root,root) %{_libdir}/libstreams.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libstreams.so.0
+%attr(755,root,root) %{_libdir}/libstrigihtmlgui.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libstrigihtmlgui.so.0
+%attr(755,root,root) %{_libdir}/libstrigiqtdbusclient.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libstrigiqtdbusclient.so.0
 %dir %{_libdir}/strigi
 %attr(755,root,root) %{_libdir}/strigi/*.so
-%{?with_dbus:%{_datadir}/dbus-1/services/*.service}
+%{?with_dbus:%{_datadir}/dbus-1/services/org.freedesktop.xesam.searcher.service}
+%{?with_dbus:%{_datadir}/dbus-1/services/vandenoever.strigi.service}
 %dir %{_datadir}/strigi
 %{_datadir}/strigi/fieldproperties
 
