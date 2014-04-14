@@ -8,7 +8,7 @@ Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.7.8
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
