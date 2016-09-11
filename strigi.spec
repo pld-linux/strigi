@@ -28,6 +28,7 @@ BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	expat-devel
 BuildRequires:	fam-devel
 BuildRequires:	ffmpeg-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2
 BuildRequires:	log4cxx-devel
 %{?with_dbus:BuildRequires:	pkgconfig}
@@ -35,6 +36,11 @@ BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	zlib-devel
+Requires:	QtDBus >= %{qtver}
+Requires:	QtGui >= %{qtver}
+Requires:	clucene-core >= 0.9.21
+%{?with_dbus:Requires:	dbus-libs >= 1.0}
+Requires:	exiv2-libs >= 0.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,6 +79,7 @@ Summary:	Header files for strigi
 Summary(pl.UTF-8):	Pliki nagłówkowe dla strigi
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 Header files for strigi.
