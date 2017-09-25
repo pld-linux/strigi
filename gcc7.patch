@@ -1,0 +1,33 @@
+--- strigi-0.7.8/libstreamanalyzer/cmake/MacroCheckGccVisibility.cmake~	2013-02-05 22:34:52.000000000 +0100
++++ strigi-0.7.8/libstreamanalyzer/cmake/MacroCheckGccVisibility.cmake	2017-09-25 22:59:45.059188936 +0200
+@@ -15,7 +15,7 @@
+    # get the gcc version
+    exec_program(${CMAKE_C_COMPILER} ARGS ${CMAKE_C_COMPILER_ARG1} --version OUTPUT_VARIABLE _gcc_version_info)
+ 
+-   string (REGEX MATCH "[345]\\.[0-9]\\.[0-9]" _gcc_version "${_gcc_version_info}")
++   string (REGEX MATCH "[34567]\\.[0-9]\\.[0-9]" _gcc_version "${_gcc_version_info}")
+    # gcc on mac just reports: "gcc (GCC) 3.3 20030304 ..." without the patch level, handle this here:
+    if (NOT _gcc_version)
+       string (REGEX REPLACE ".*\\(GCC\\).* ([34]\\.[0-9]) .*" "\\1.0" _gcc_version "${_gcc_version_info}")
+--- strigi-0.7.8/libstreams/cmake/MacroCheckGccVisibility.cmake~	2013-02-05 22:34:57.000000000 +0100
++++ strigi-0.7.8/libstreams/cmake/MacroCheckGccVisibility.cmake	2017-09-25 23:01:05.567563192 +0200
+@@ -15,7 +15,7 @@
+    # get the gcc version
+    exec_program(${CMAKE_C_COMPILER} ARGS ${CMAKE_C_COMPILER_ARG1} --version OUTPUT_VARIABLE _gcc_version_info)
+ 
+-   string (REGEX MATCH "[345]\\.[0-9]\\.[0-9]" _gcc_version "${_gcc_version_info}")
++   string (REGEX MATCH "[34567]\\.[0-9]\\.[0-9]" _gcc_version "${_gcc_version_info}")
+    # gcc on mac just reports: "gcc (GCC) 3.3 20030304 ..." without the patch level, handle this here:
+    if (NOT _gcc_version)
+       string (REGEX REPLACE ".*\\(GCC\\).* ([34]\\.[0-9]) .*" "\\1.0" _gcc_version "${_gcc_version_info}")
+--- strigi-0.7.8/libstreamanalyzer/plugins/indexers/clucenengindexer/cluceneindexreader.cpp~	2013-02-05 22:34:52.000000000 +0100
++++ strigi-0.7.8/libstreamanalyzer/plugins/indexers/clucenengindexer/cluceneindexreader.cpp	2017-09-25 23:04:39.028999670 +0200
+@@ -321,7 +321,7 @@
+         doc.size = atoi(size.c_str());
+     } else {
+         doc.properties.insert(make_pair<const string, string>(
+-            wchartoutf8(name), value));
++            wchartoutf8(name), wchartoutf8(field->stringValue())));
+     }
+ }
+ Variant

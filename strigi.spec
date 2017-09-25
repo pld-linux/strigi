@@ -8,13 +8,14 @@ Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.7.8
-Release:	9
+Release:	10
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
 # Source0-md5:	d69443234f4286d71997db9de543331a
 Patch0:		%{name}-as-needed.patch
 Patch1:		ffmpeg3.patch
+Patch2:		gcc7.patch
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -24,6 +25,7 @@ BuildRequires:	clucene-core-devel >= 0.9.21
 BuildRequires:	cmake >= 2.8.9
 BuildRequires:	cppunit-devel
 %{?with_dbus:BuildRequires:	dbus-devel >= 1.0}
+%{?with_dbus:BuildRequires:	dbus-x11 >= 1.0}
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	expat-devel
 BuildRequires:	fam-devel
@@ -91,6 +93,7 @@ Pliki nagłówkowe dla strigi.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 install -d build
