@@ -1,0 +1,15 @@
+--- strigi-0.7.8/libstreamanalyzer/plugins/endplugins/ffmpegendanalyzer.cpp.orig	2018-04-28 19:56:25.000000000 +0200
++++ strigi-0.7.8/libstreamanalyzer/plugins/endplugins/ffmpegendanalyzer.cpp	2018-04-28 20:07:38.344872689 +0200
+@@ -412,8 +412,10 @@
+         if (size_t len = strlen(p->name)) {
+           ar.addTriplet(streamuri, codecPropertyName, string(p->name, len));
+         }
+-      } else if (size_t len = strlen(codec.codec_name)) {
+-        ar.addTriplet(streamuri, codecPropertyName, string(codec.codec_name, len));
++      } else if (codec.codec) {
++              if (size_t len = strlen(codec.codec->name)) {
++                    ar.addTriplet(streamuri, codecPropertyName, string(codec.codec->name, len));
++              }
+       }
+ /*
+ 00792     } else if (enc->codec_id == CODEC_ID_MPEG2TS) {
