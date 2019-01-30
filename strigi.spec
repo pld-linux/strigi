@@ -8,7 +8,7 @@ Summary:	Strigi desktop search
 Summary(pl.UTF-8):	System wyszukiwania Strigi
 Name:		strigi
 Version:	0.7.8
-Release:	11
+Release:	12
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://www.vandenoever.info/software/strigi/%{name}-%{version}.tar.bz2
@@ -17,6 +17,7 @@ Patch0:		%{name}-as-needed.patch
 Patch1:		ffmpeg3.patch
 Patch2:		gcc7.patch
 Patch3:		ffmpeg4.patch
+Patch4:		gcc8.patch
 URL:		http://strigi.sourceforge.net/
 BuildRequires:	QtDBus-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -96,6 +97,7 @@ Pliki nagłówkowe dla strigi.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 install -d build
