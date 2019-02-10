@@ -1,0 +1,21 @@
+--- strigi-0.7.8/libstreamanalyzer/cmake/FindExiv2.cmake~	2013-02-05 22:34:52.000000000 +0100
++++ strigi-0.7.8/libstreamanalyzer/cmake/FindExiv2.cmake	2019-02-10 11:17:21.385460637 +0100
+@@ -57,7 +57,7 @@
+ 
+ # Get the version number from exiv2/version.hpp and store it in the cache:
+ if(EXIV2_INCLUDE_DIR  AND NOT  EXIV2_VERSION)
+-  file(READ ${EXIV2_INCLUDE_DIR}/exiv2/version.hpp EXIV2_VERSION_CONTENT)
++  file(READ ${EXIV2_INCLUDE_DIR}/exiv2/exv_conf.h EXIV2_VERSION_CONTENT)
+   string(REGEX MATCH "#define EXIV2_MAJOR_VERSION +\\( *([0-9]+) *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
+   set(EXIV2_VERSION_MAJOR "${CMAKE_MATCH_1}")
+ 
+--- strigi-0.7.8/libstreamanalyzer/plugins/endplugins/jpegendanalyzer.cpp~	2013-02-05 22:34:52.000000000 +0100
++++ strigi-0.7.8/libstreamanalyzer/plugins/endplugins/jpegendanalyzer.cpp	2019-02-10 11:21:47.985169557 +0100
+@@ -31,6 +31,7 @@
+ #include <exiv2/image.hpp>
+ #include <exiv2/jpgimage.hpp>
+ #include <exiv2/error.hpp>
++#include <exiv2/version.hpp>
+ #include <math.h>
+ #include <time.h>
+ 
