@@ -1,0 +1,10 @@
+--- strigi-0.7.8/libstreamanalyzer/plugins/endplugins/jpegendanalyzer.cpp.orig	2023-02-06 06:21:33.316245404 +0100
++++ strigi-0.7.8/libstreamanalyzer/plugins/endplugins/jpegendanalyzer.cpp	2023-02-06 18:31:14.037322159 +0100
+@@ -32,6 +32,7 @@
+ #include <exiv2/jpgimage.hpp>
+ #include <exiv2/error.hpp>
+ #include <exiv2/version.hpp>
++#include <iostream>
+ #include <math.h>
+ #include <time.h>
+ 
