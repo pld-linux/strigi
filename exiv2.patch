@@ -1,14 +1,24 @@
 --- strigi-0.7.8/libstreamanalyzer/cmake/FindExiv2.cmake~	2013-02-05 22:34:52.000000000 +0100
 +++ strigi-0.7.8/libstreamanalyzer/cmake/FindExiv2.cmake	2019-02-10 11:17:21.385460637 +0100
-@@ -57,7 +57,7 @@
+@@ -57,14 +57,14 @@
  
  # Get the version number from exiv2/version.hpp and store it in the cache:
  if(EXIV2_INCLUDE_DIR  AND NOT  EXIV2_VERSION)
 -  file(READ ${EXIV2_INCLUDE_DIR}/exiv2/version.hpp EXIV2_VERSION_CONTENT)
+-  string(REGEX MATCH "#define EXIV2_MAJOR_VERSION +\\( *([0-9]+) *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
 +  file(READ ${EXIV2_INCLUDE_DIR}/exiv2/exv_conf.h EXIV2_VERSION_CONTENT)
-   string(REGEX MATCH "#define EXIV2_MAJOR_VERSION +\\( *([0-9]+) *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
++  string(REGEX MATCH "#define EXIV2_MAJOR_VERSION +\\( *([0-9]+)U? *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
    set(EXIV2_VERSION_MAJOR "${CMAKE_MATCH_1}")
  
+-  string(REGEX MATCH "#define EXIV2_MINOR_VERSION +\\( *([0-9]+) *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
++  string(REGEX MATCH "#define EXIV2_MINOR_VERSION +\\( *([0-9]+)U? *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
+   set(EXIV2_VERSION_MINOR "${CMAKE_MATCH_1}")
+ 
+-  string(REGEX MATCH "#define EXIV2_PATCH_VERSION +\\( *([0-9]+) *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
++  string(REGEX MATCH "#define EXIV2_PATCH_VERSION +\\( *([0-9]+)U? *\\)"  _dummy "${EXIV2_VERSION_CONTENT}")
+   set(EXIV2_VERSION_PATCH "${CMAKE_MATCH_1}")
+ 
+   set(EXIV2_VERSION "${EXIV2_VERSION_MAJOR}.${EXIV2_VERSION_MINOR}.${EXIV2_VERSION_PATCH}" CACHE STRING "Version number of Exiv2" FORCE)
 --- strigi-0.7.8/libstreamanalyzer/plugins/endplugins/jpegendanalyzer.cpp~	2013-02-05 22:34:52.000000000 +0100
 +++ strigi-0.7.8/libstreamanalyzer/plugins/endplugins/jpegendanalyzer.cpp	2019-02-10 11:21:47.985169557 +0100
 @@ -31,6 +31,7 @@
@@ -19,3 +29,26 @@
  #include <math.h>
  #include <time.h>
  
+@@ -49,6 +49,10 @@
+ using namespace Strigi;
+ using namespace std;
+ 
++#if EXIV2_TEST_VERSION (0,28,0)
++#define AutoPtr UniquePtr
++#define AnyError Error
++#endif
+ 
+ /*
+  Declare the factory.
+@@ -340,9 +344,9 @@ JpegEndAnalyzer::analyze(AnalysisResult&
+ #else
+     Exiv2::DataBuf thumbnail = exif.copyThumbnail();
+ #endif
+-    data = (const char*)thumbnail.pData_;
++    data = (const char*)thumbnail.c_data();
+     if (data) {
+-        StringInputStream thumbstream(data, (int32_t)thumbnail.size_, false);
++        StringInputStream thumbstream(data, (int32_t)thumbnail.size(), false);
+         string thumbname("thumbnail");
+ #if (EXIV2_TEST_VERSION(0,17,91))
+         ar.indexChild(thumbname + thumb.extension(), ar.mTime(),
